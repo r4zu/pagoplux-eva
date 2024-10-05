@@ -9,7 +9,11 @@ import { TransactionlistingComponent } from './transactionlisting/transactionlis
 import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  {
+    path: '',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   {

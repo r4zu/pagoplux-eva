@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { AuthService } from '../service/auth.service';
 
@@ -11,12 +12,9 @@ import { AuthService } from '../service/auth.service';
 })
 export class LoginComponent {
   userdata: any;
+  private _snackBar = inject(MatSnackBar);
 
-  constructor(
-    private builder: FormBuilder,
-    private service: AuthService,
-    private router: Router
-  ) {
+  constructor(private builder: FormBuilder, private service: AuthService) {
     sessionStorage.clear();
   }
 
@@ -42,11 +40,19 @@ export class LoginComponent {
         this.userdata = result;
         if (this.userdata['token']) {
           sessionStorage.setItem('token', this.userdata.token);
-          this.router.navigate(['']);
+          window.location.href = '/';
         } else {
-          alert('Invalid credentials');
+          this.openSnackBar('Invalid credentials', 'Close');
         }
       });
+    } else {
+      this.openSnackBar('Please enter valid data.', 'Close');
     }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }

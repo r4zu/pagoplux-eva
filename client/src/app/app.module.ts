@@ -12,7 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { TransactionlistingComponent } from './transactionlisting/transactionlisting.component';
-import { UpdatepopupComponent } from './updatepopup/updatepopup.component';
+import { BotonComponent } from './boton/boton.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { UpdatepopupComponent } from './updatepopup/updatepopup.component';
     LoginComponent,
     HomeComponent,
     TransactionlistingComponent,
-    UpdatepopupComponent,
+    BotonComponent,
   ],
   imports: [
     BrowserModule,

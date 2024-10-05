@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../service/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-register',
@@ -10,6 +11,8 @@ import { AuthService } from '../service/auth.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
+  private _snackBar = inject(MatSnackBar);
+
   constructor(
     private builder: FormBuilder,
     private service: AuthService,
@@ -39,11 +42,17 @@ export class RegisterComponent {
       this.service
         .ProceedRegister(this.registerForm.value)
         .subscribe((result) => {
+          this.openSnackBar('Registered successfully.', 'Close');
           this.router.navigate(['login']);
-          alert('Registered successfully.');
         });
     } else {
-      alert('Please enter valid data.');
+      this.openSnackBar('Please enter valid data.', 'Close');
     }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }
