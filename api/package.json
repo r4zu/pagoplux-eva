@@ -22,6 +22,7 @@
     "compose:down": "docker compose down --remove-orphans"
   },
   "dependencies": {
+    "@nestjs/axios": "^3.0.3",
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/jwt": "^10.2.0",
@@ -31,6 +32,8 @@
     "@nestjs/typeorm": "^10.0.2",
     "@types/bcrypt": "^5.0.2",
     "@types/passport-jwt": "^4.0.1",
+    "axios": "^1.7.7",
+    "basic-auth-header": "^1.0.1",
     "bcrypt": "^5.1.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",

@@ -39,6 +39,7 @@ export class LoginComponent {
       this.service.ProceedLogin(this.loginForm.value).subscribe((result) => {
         this.userdata = result;
         if (this.userdata['token']) {
+          sessionStorage.setItem('userId', this.userdata.id);
           sessionStorage.setItem('token', this.userdata.token);
           window.location.href = '/';
         } else {

@@ -18,6 +18,12 @@ export class AuthService {
       .post(this.apiUrl + '/auth/login', inputData)
       .pipe(catchError(this.handleError('getHeroes', [])));
   }
+  ProceedTransaction(inputData: any) {
+    return this.http.post(this.apiUrl + '/transactions', inputData);
+  }
+  GetTransactions(userId: any) {
+    return this.http.get(this.apiUrl + '/transactions/' + userId);
+  }
 
   IsLoggedIn() {
     return sessionStorage.getItem('token') !== null;

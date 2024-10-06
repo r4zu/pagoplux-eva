@@ -9,6 +9,8 @@ interface EnvVars {
   DB_PASSWORD: string;
   DB_NAME: string;
   JWT_SECRET: string;
+  PAGOPLUX_USER: string;
+  PAGOPLUX_PASSWORD: string;
 }
 
 const envsSchema = joi
@@ -20,6 +22,8 @@ const envsSchema = joi
     DB_PASSWORD: joi.string().required(),
     DB_NAME: joi.string().required(),
     JWT_SECRET: joi.string().required(),
+    PAGOPLUX_USER: joi.string().required(),
+    PAGOPLUX_PASSWORD: joi.string().required(),
   })
   .unknown(true);
 
@@ -37,4 +41,6 @@ export const envs = {
   dbPassword: envVars.DB_PASSWORD,
   dbName: envVars.DB_NAME,
   jwtSecret: envVars.JWT_SECRET,
+  pagoPluxUser: envVars.PAGOPLUX_USER,
+  pagoPluxPassword: envVars.PAGOPLUX_PASSWORD,
 };

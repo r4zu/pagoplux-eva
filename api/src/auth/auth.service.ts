@@ -65,6 +65,15 @@ export class AuthService {
     };
   }
 
+  async findOneBy(id: string) {
+    try {
+      return await this.userRepository.findOne({ where: { id } });
+    } catch (error) {
+      this.logger.error(error);
+      throw new InternalServerErrorException('Please check server logs');
+    }
+  }
+
   private getJwtToken(payload: JwtPayload) {
     const token = this.jwtService.sign(payload);
     return token;

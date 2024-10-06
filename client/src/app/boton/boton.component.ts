@@ -1,4 +1,6 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, inject } from '@angular/core';
+import { AuthService } from '../service/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-boton',
@@ -6,7 +8,9 @@ import { AfterViewInit, Component } from '@angular/core';
   styleUrls: ['./boton.component.css'],
 })
 export class BotonComponent implements AfterViewInit {
-  constructor() {}
+  private _snackBar = inject(MatSnackBar);
+
+  constructor(private service: AuthService) {}
 
   ngAfterViewInit() {
     this.loadScript();
@@ -87,7 +91,8 @@ export class BotonComponent implements AfterViewInit {
       if (response.status == 'succeeded') {
         // Pago exitoso response contiene la información del pago la cual puede
         // usarse para validaciones que depende del tipo de pago realizado
-        console.log(response);
+        return response.detail;
+
         // "amount": 7.00,
         // "deferred": 0,
         // "interest": ”SI”,
@@ -113,5 +118,11 @@ export class BotonComponent implements AfterViewInit {
     script.src = 'https://sandbox-paybox.pagoplux.com/paybox/index.js';
     script.id = 'payboxScript';
     document.head.appendChild(script);
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }

@@ -1,8 +1,10 @@
+import { Transaction } from 'src/transactions/entities/transaction.entity';
 import {
   BeforeInsert,
   BeforeUpdate,
   Column,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -25,6 +27,11 @@ export class User {
 
   @Column('text')
   lastName: string;
+
+  @OneToMany(() => Transaction, (transaction) => transaction.user, {
+    onDelete: 'CASCADE',
+  })
+  transactions: Transaction[];
 
   @BeforeInsert()
   checkFieldsBeforeInsert() {

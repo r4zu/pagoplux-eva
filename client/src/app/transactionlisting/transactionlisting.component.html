@@ -1,1 +1,55 @@
-<p>transactionlisting works!</p>
+<div>
+  <!-- i need a loading component until i have the data -->
+  <div *ngIf="!transactionList">
+    <mat-spinner></mat-spinner>
+  </div>
+  <!-- i need a loading component until i have the data -->
+  <div *ngFor="let transaction of transactionList">
+    <mat-card class="card" style="margin-bottom: 20px; width: 100%">
+      <mat-card-content>
+        <div style="display: flex; flex-direction: column">
+          <span
+            ><strong>Transaction ID:</strong>
+            {{ transaction.detail.respuest.id_transaccion }}</span
+          >
+          <span
+            ><strong>Número de transacción:</strong>
+            {{ transaction.detail.respuest.voucher }}</span
+          >
+          <span
+            ><strong>Nombres:</strong>
+            {{ transaction.detail.respuest.cliente.nombres }}</span
+          >
+          <span
+            ><strong>Fecha transacción:</strong>
+            {{ transaction.detail.respuest.fecha_transaccion }}</span
+          >
+          <span
+            ><strong>Tipo de pago:</strong>
+            {{ transaction.detail.respuest.tipoPago }}</span
+          >
+          <span
+            ><strong>Monto:</strong>
+            {{ transaction.detail.respuest.monto }}</span
+          >
+          <span
+            ><strong>Monto base:</strong>
+            {{ transaction.detail.respuest.valor_base12 }}</span
+          >
+          <span
+            ><strong>Monto base sin IVA:</strong>
+            {{ transaction.detail.respuest.valor_base0 }}</span
+          >
+          <span
+            ><strong>Monto IVA:</strong>
+            {{ transaction.detail.respuest.valor_iva }}</span
+          >
+          <span
+            ><strong>Estado del pago:</strong>
+            {{ transaction.detail.respuest.valor_catalogo_estado }}</span
+          >
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
