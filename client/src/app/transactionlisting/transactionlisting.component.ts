@@ -21,7 +21,6 @@ export class TransactionlistingComponent implements OnInit {
     this.service.GetTransactions(userId).subscribe((result) => {
       this.loadingSpinner = false;
       this.transactionList = result;
-      console.log(this.transactionList);
     });
   }
 }

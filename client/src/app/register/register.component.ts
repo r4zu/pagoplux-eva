@@ -41,7 +41,11 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       this.service
         .ProceedRegister(this.registerForm.value)
-        .subscribe((result) => {
+        .subscribe((result: any) => {
+          if (result.length === 0) {
+            this.openSnackBar('User already exists.', 'Close');
+            return;
+          }
           this.openSnackBar('Registered successfully.', 'Close');
           this.router.navigate(['login']);
         });

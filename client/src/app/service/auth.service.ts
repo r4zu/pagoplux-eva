@@ -11,7 +11,9 @@ export class AuthService {
   apiUrl = 'http://localhost:3000/api/v1';
 
   ProceedRegister(inputData: any) {
-    return this.http.post(this.apiUrl + '/auth/register', inputData);
+    return this.http
+      .post(this.apiUrl + '/auth/register', inputData)
+      .pipe(catchError(this.handleError('getHeroes', [])));
   }
   ProceedLogin(inputData: any) {
     return this.http
