@@ -1,4 +1,4 @@
-# Authentication Pagoplux
+# API PagoPlux
 
 1. Clonar proyecto
 2. Instalar nestjs
